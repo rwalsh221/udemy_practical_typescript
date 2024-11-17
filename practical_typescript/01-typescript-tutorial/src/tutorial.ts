@@ -168,19 +168,78 @@ const processInput = (input: string | number): void => {
   }
 };
 
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
-// ***** LESSON 20 FUNCTIONS *****
+// ***** LESSON 29 OBJECTS AS PARAMETERS *****
+
+const createEmployee = ({
+  id,
+}: {
+  id: number;
+}): { id: number; isActive: boolean } => {
+  return {
+    id: id,
+    isActive: true,
+  };
+};
+
+const first = createEmployee({ id: 1 });
+console.log(first);
+
+// alternative
+
+const createStudent = (student: { id: number; name: string }): void => {
+  console.log(`welcome to the course ${student.name.toLocaleUpperCase()}`);
+};
+
+const newStudent = {
+  id: 5,
+  name: 'anna',
+};
+
+createStudent(newStudent);
+
+// ***** LESSON 30 EXCESS PROPERTY CHECK *****
+
+// createStudent({ id: 1, name: 'ted', age: 20 });
+
+// ***** LESSON 31 CHALLENGE FUNCTIONS 2 *****
+
+// ## Challenge
+
+// Your task is to create a function named processData that accepts two parameters:
+
+// - The first parameter, input, should be a union type that can be either a string or a number.
+// - The second parameter, config, should be an object with a reverse property of type boolean, by default it "reverse" should be false
+
+// The function should behave as follows:
+
+// - If input is of type number, the function should return the square of the number.
+// - If input is of type string, the function should return the string in uppercase.
+// - If the reverse property on the config object is true, and input is a string, the function should return the reversed string in uppercase.
+
+const processData = (
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+) => {
+  if (typeof input === 'number') {
+    return input;
+  } else {
+    if (config.reverse) {
+      return input.split('').reverse().join().toUpperCase();
+    }
+    return input.toUpperCase();
+  }
+};
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 30 FUNCTIONS *****
