@@ -229,13 +229,171 @@ const processData = (
     return input.toUpperCase();
   }
 };
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 32 TYPE ALIAS *****
+
+type User = {
+  id: number;
+  name: string;
+  isActive: boolean;
+};
+
+const john: User = {
+  id: 1,
+  name: 'john',
+  isActive: true,
+};
+const susan: User = {
+  id: 1,
+  name: 'susan',
+  isActive: false,
+};
+
+function createUser(user: User): User {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+
+  return user;
+}
+
+// ***** LESSON 33 TYPE ALIAS - ADDITIONAL INFO *****
+
+type StringOrNumber = string | number;
+
+let value: StringOrNumber;
+value = 'ghell';
+value = 8;
+
+type Theme = 'light' | 'dark';
+
+let theme: Theme;
+theme = 'dark';
+
+const setTheme = (t: Theme) => {
+  theme = t;
+};
+
+setTheme('dark');
+
+// ***** LESSON 35 INTERSECTION TYPE *****
+
+type Book = { id: number; name: string; price: number };
+type DiscountedBook = Book & { discount: number };
+const book1: Book = {
+  id: 1,
+  name: 'test',
+  price: 15,
+};
+
+const book2: Book = {
+  id: 2,
+  name: 'llklkk',
+  price: 18,
+};
+
+const discountedBook: DiscountedBook = {
+  id: 3,
+  name: 'test233',
+  price: 20,
+  discount: 0.15,
+};
+
+// ***** LESSON 36 COMPUTED PROPERTIES *****
+
+const propName = 'age';
+
+type Animal = {
+  [propName]: number;
+};
+
+let tiger: Animal = {
+  [propName]: 5,
+};
+
+// ***** LESSON 37 INTERFACE FUNDAMENTALS *****
+
+interface InterfaceBook {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+}
+
+const deepWork: InterfaceBook = {
+  isbn: 9781455586691,
+  title: 'Deep Work',
+  author: 'Cal Newport',
+  genre: 'Self-help',
+};
+
+deepWork.title = 'New Title'; // allowed
+// deepWork.isbn = 654321; // not allowed
+
+// ***** LESSON 38 INTERFACE - METHODS *****
+
+interface InterfaceBook2 {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // method
+  printAuthor(): void;
+  printTitle(message: string): string;
+}
+
+const deepWork2: InterfaceBook2 = {
+  isbn: 9781455586691,
+  title: 'Deep Work',
+  author: 'Cal Newport',
+  genre: 'Self-help',
+  printAuthor() {
+    console.log(this.author);
+  },
+  printTitle(message) {
+    return `${message} ${this.title}`;
+  },
+};
+
+deepWork2.printAuthor();
+deepWork2.printTitle('hello');
+
+// ***** LESSON 39 INSTANCE METHODS - MORE OPTIONS *****
+
+interface InterfaceBook3 {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // method
+  printAuthor(): void;
+  printTitle(message: string): string;
+  printSomething: (someValue: number) => number;
+}
+
+const deepWork3: InterfaceBook3 = {
+  isbn: 9781455586691,
+  title: 'Deep Work',
+  author: 'Cal Newport',
+  genre: 'Self-help',
+  printAuthor() {
+    console.log(this.author);
+  },
+  printTitle(message) {
+    return `${message} ${this.title}`;
+  },
+  // first option
+  // printSomething: function (someValue) {
+  //   return someValue;
+  // },
+
+  // SECOND OPTION
+  printSomething: (someValue) => {
+    return someValue;
+  },
+};
+
+deepWork3.printAuthor();
+deepWork3.printTitle('hello');
+deepWork3.printSomething(34);
+
 // ***** LESSON 30 FUNCTIONS *****
 // ***** LESSON 30 FUNCTIONS *****
 // ***** LESSON 30 FUNCTIONS *****
