@@ -394,10 +394,156 @@ deepWork3.printAuthor();
 deepWork3.printTitle('hello');
 deepWork3.printSomething(34);
 
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
-// ***** LESSON 30 FUNCTIONS *****
+// ***** LESSON 41 INTERFACE - MERGE AND EXTEND *****
+
+interface Person {
+  name: string;
+  getDetails(): string;
+}
+
+interface DogOwner {
+  dogName: string;
+  getDogDetails(): string;
+}
+
+interface Person {
+  age: number;
+}
+
+interface Employee extends Person {
+  id: number;
+}
+
+interface Manager extends Person, DogOwner {
+  managePeople(): void;
+}
+
+const person: Person = {
+  name: 'john',
+  age: 20,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  },
+};
+
+person.getDetails();
+
+const employee: Employee = {
+  name: 'jane',
+  age: 30,
+  id: 1,
+  getDetails() {
+    return `${this.name} ${this.age}, ${this.id}`;
+  },
+};
+
+employee.getDetails();
+
+const manager: Manager = {
+  name: 'Bob',
+  age: 40,
+  dogName: 'rex',
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`;
+  },
+  getDogDetails() {
+    return `Name: ${this.dogName}`;
+  },
+  managePeople() {
+    console.log('manage people');
+  },
+};
+
+manager.managePeople();
+
+// ***** LESSON 44 INTERFACE - TYPE PREDICATE FUNCTIONS *****
+interface Person2 {
+  name: string;
+}
+
+interface DogOwner2 extends Person2 {
+  dogName: string;
+}
+
+interface Manager2 extends Person2 {
+  managePeople(): void;
+  delegateTasks(): void;
+}
+
+const employee2: Person2 | DogOwner2 | Manager2 = getEmployee();
+console.log(employee2);
+
+function getEmployee(): Person2 | DogOwner2 | Manager2 {
+  const random = Math.random();
+
+  if (random < 0.33) {
+    return {
+      name: 'john',
+    };
+  } else if (random < 0.66) {
+    return {
+      name: 'sarah',
+      dogName: 'Rex',
+    };
+  } else {
+    return {
+      name: 'bob',
+      managePeople: () => console.log('Managing people...'),
+      delegateTasks: () => console.log('Delegating tasks...'),
+    };
+  }
+}
+
+function isManager(obj: Person2 | DogOwner2 | Manager2): obj is Manager2 {
+  return typeof obj === 'object';
+}
+// ***** LESSON 45 TUPLE *****
+
+let personTuple: [string, number] = ['john', 25];
+
+// ***** LESSON 46 ENUM FUNDAMENTALS *****
+
+enum ServerResponseStatus {
+  SUCCESS,
+  ERROR,
+}
+
+interface ServerResponse {
+  result: ServerResponseStatus;
+  data: string[];
+}
+
+const getServerResponse = (): ServerResponse => {
+  return {
+    result: ServerResponseStatus.ERROR,
+    data: ['hello9'],
+  };
+};
+
+const response: ServerResponse = getServerResponse();
+
+// ***** LESSON 49 TYPE ASSERTION *****
+
+let someValue: any = 'hello';
+
+let strLength: number = (someValue as string).length;
+
+type Bird = {
+  name: string;
+};
+
+let birdString = '{"name": "Eagle"}';
+let dogString = '{"breed": "Poodle"}';
+
+let birdObject = JSON.parse(birdString);
+let dogObject = JSON.parse(birdString);
+
+let bird = birdObject as Bird;
+
+enum Status {
+  Pending = 'pending',
+  Declined = 'declined',
+}
+
+// ***** LESSON 40 FUNCTIONS *****
+// ***** LESSON 40 FUNCTIONS *****
