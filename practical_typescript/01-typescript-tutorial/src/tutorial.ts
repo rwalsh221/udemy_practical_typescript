@@ -1,5 +1,5 @@
-let name: string = 'john';
-name = 'chloe';
+let name: string = "john";
+name = "chloe";
 name = name.toUpperCase();
 console.log(name);
 
@@ -11,35 +11,35 @@ let bool: boolean = true;
 bool = false;
 // bool = 'hello'; not bool error
 
-let test = 'test';
+let test = "test";
 // test = 2; inference not string error
 
 // ***** LESSON 12 UNION TYPE *****
 
 let tax: number | string = 10;
-tax = '9';
+tax = "9";
 
-let requestStatus: 'pending' | 'success' | 'error' = 'pending';
-requestStatus = 'success';
+let requestStatus: "pending" | "success" | "error" = "pending";
+requestStatus = "success";
 
 // ***** LESSON 13 ANY TYPE *****
 
 let notSure: any = 4;
-notSure = '4';
+notSure = "4";
 notSure = true;
 
 let anyValue; // infers any type
 anyValue = 10;
-anyValue = '10';
+anyValue = "10";
 
 // ***** LESSON 14 *****
 
-const books = ['1984', 'Brave New World', 'Fahrenheit 451'];
+const books = ["1984", "Brave New World", "Fahrenheit 451"];
 
 let foundBook: string | undefined;
 
 for (let book of books) {
-  if (book === '1984') {
+  if (book === "1984") {
     foundBook = book;
   }
   break;
@@ -53,30 +53,30 @@ let prices: number[] = [100, 2, 4];
 
 prices.push(9);
 
-let fruit: string[] = ['apple', 'orange'];
+let fruit: string[] = ["apple", "orange"];
 
 // let randomValues: [] = [0, 9]; error expects empty array
 
-let names = ['peter', 'susan', 1];
+let names = ["peter", "susan", 1];
 
 names.push(9);
-let array: (string | boolean)[] = ['apple', true];
+let array: (string | boolean)[] = ["apple", true];
 
 // ***** LESSON 18 OBJECT FUNDAMENTALS *****
 
 let car: { brand: string; year: number } = {
-  brand: 'ford',
+  brand: "ford",
   year: 2020,
 };
 
-let book = { title: 'book', cost: 20 };
-let pen = { title: 'pen', cost: 20 };
-let notebook = { title: 'notebook' };
+let book = { title: "book", cost: 20 };
+let pen = { title: "pen", cost: 20 };
+let notebook = { title: "notebook" };
 
 let items: { readonly title: string; cost?: number }[] = [book, pen, notebook];
 
 // items[0].title = 'book2' readonly error
-book.title = 'book2'; // can still change original object
+book.title = "book2"; // can still change original object
 
 // ***** LESSON 20 FUNCTIONS *****
 
@@ -84,10 +84,10 @@ const sayHi = (name: string) => {
   return `hi ${name}`;
 };
 
-const useSayHi = sayHi('paul');
+const useSayHi = sayHi("paul");
 useSayHi.toLocaleUpperCase();
 
-console.log(sayHi('john'));
+console.log(sayHi("john"));
 
 // ***** LESSON 21 FUNCTIONS - RETURNS *****
 
@@ -104,7 +104,7 @@ const calculateDiscount = (price: number): number => {
 
 const finalPrice = calculateDiscount(200);
 
-const namesArray: string[] = ['john', 'paul'];
+const namesArray: string[] = ["john", "paul"];
 
 const checkName = (name: string, namesArray: string[]): boolean => {
   let nameFound = false;
@@ -118,7 +118,7 @@ const checkName = (name: string, namesArray: string[]): boolean => {
   return nameFound;
 };
 
-console.log(checkName('john', namesArray));
+console.log(checkName("john", namesArray));
 
 // ***** LESSON 24 OPTIONAL PARAMETERS *****
 
@@ -148,7 +148,7 @@ const sum = (message: string, ...numbers: number[]) => {
   return `${message} ${total}`;
 };
 
-let sumResult = sum('the total is', 1, 2, 3, 4, 4, 5, 6, 7);
+let sumResult = sum("the total is", 1, 2, 3, 4, 4, 5, 6, 7);
 
 // ***** LESSON 27 FUNCTIONS - VOID KEYWORD *****
 
@@ -156,12 +156,12 @@ const log = (message: string) => {
   console.log(message);
 };
 
-log('hllo');
+log("hllo");
 
 // ***** LESSON 28 FUNCTIONS - TYPE GUARDS *****
 
 const processInput = (input: string | number): void => {
-  if (typeof input === 'number') {
+  if (typeof input === "number") {
     console.log(input * 2);
   } else {
     console.log(input.toUpperCase());
@@ -192,7 +192,7 @@ const createStudent = (student: { id: number; name: string }): void => {
 
 const newStudent = {
   id: 5,
-  name: 'anna',
+  name: "anna",
 };
 
 createStudent(newStudent);
@@ -220,11 +220,11 @@ const processData = (
   input: string | number,
   config: { reverse: boolean } = { reverse: false }
 ) => {
-  if (typeof input === 'number') {
+  if (typeof input === "number") {
     return input;
   } else {
     if (config.reverse) {
-      return input.split('').reverse().join().toUpperCase();
+      return input.split("").reverse().join().toUpperCase();
     }
     return input.toUpperCase();
   }
@@ -239,12 +239,12 @@ type User = {
 
 const john: User = {
   id: 1,
-  name: 'john',
+  name: "john",
   isActive: true,
 };
 const susan: User = {
   id: 1,
-  name: 'susan',
+  name: "susan",
   isActive: false,
 };
 
@@ -259,19 +259,19 @@ function createUser(user: User): User {
 type StringOrNumber = string | number;
 
 let value: StringOrNumber;
-value = 'ghell';
+value = "ghell";
 value = 8;
 
-type Theme = 'light' | 'dark';
+type Theme = "light" | "dark";
 
 let theme: Theme;
-theme = 'dark';
+theme = "dark";
 
 const setTheme = (t: Theme) => {
   theme = t;
 };
 
-setTheme('dark');
+setTheme("dark");
 
 // ***** LESSON 35 INTERSECTION TYPE *****
 
@@ -279,26 +279,26 @@ type Book = { id: number; name: string; price: number };
 type DiscountedBook = Book & { discount: number };
 const book1: Book = {
   id: 1,
-  name: 'test',
+  name: "test",
   price: 15,
 };
 
 const book2: Book = {
   id: 2,
-  name: 'llklkk',
+  name: "llklkk",
   price: 18,
 };
 
 const discountedBook: DiscountedBook = {
   id: 3,
-  name: 'test233',
+  name: "test233",
   price: 20,
   discount: 0.15,
 };
 
 // ***** LESSON 36 COMPUTED PROPERTIES *****
 
-const propName = 'age';
+const propName = "age";
 
 type Animal = {
   [propName]: number;
@@ -319,12 +319,12 @@ interface InterfaceBook {
 
 const deepWork: InterfaceBook = {
   isbn: 9781455586691,
-  title: 'Deep Work',
-  author: 'Cal Newport',
-  genre: 'Self-help',
+  title: "Deep Work",
+  author: "Cal Newport",
+  genre: "Self-help",
 };
 
-deepWork.title = 'New Title'; // allowed
+deepWork.title = "New Title"; // allowed
 // deepWork.isbn = 654321; // not allowed
 
 // ***** LESSON 38 INTERFACE - METHODS *****
@@ -341,9 +341,9 @@ interface InterfaceBook2 {
 
 const deepWork2: InterfaceBook2 = {
   isbn: 9781455586691,
-  title: 'Deep Work',
-  author: 'Cal Newport',
-  genre: 'Self-help',
+  title: "Deep Work",
+  author: "Cal Newport",
+  genre: "Self-help",
   printAuthor() {
     console.log(this.author);
   },
@@ -353,7 +353,7 @@ const deepWork2: InterfaceBook2 = {
 };
 
 deepWork2.printAuthor();
-deepWork2.printTitle('hello');
+deepWork2.printTitle("hello");
 
 // ***** LESSON 39 INSTANCE METHODS - MORE OPTIONS *****
 
@@ -370,9 +370,9 @@ interface InterfaceBook3 {
 
 const deepWork3: InterfaceBook3 = {
   isbn: 9781455586691,
-  title: 'Deep Work',
-  author: 'Cal Newport',
-  genre: 'Self-help',
+  title: "Deep Work",
+  author: "Cal Newport",
+  genre: "Self-help",
   printAuthor() {
     console.log(this.author);
   },
@@ -391,7 +391,7 @@ const deepWork3: InterfaceBook3 = {
 };
 
 deepWork3.printAuthor();
-deepWork3.printTitle('hello');
+deepWork3.printTitle("hello");
 deepWork3.printSomething(34);
 
 // ***** LESSON 41 INTERFACE - MERGE AND EXTEND *****
@@ -419,7 +419,7 @@ interface Manager extends Person, DogOwner {
 }
 
 const person: Person = {
-  name: 'john',
+  name: "john",
   age: 20,
   getDetails() {
     return `Name: ${this.name}, Age: ${this.age}`;
@@ -429,7 +429,7 @@ const person: Person = {
 person.getDetails();
 
 const employee: Employee = {
-  name: 'jane',
+  name: "jane",
   age: 30,
   id: 1,
   getDetails() {
@@ -440,9 +440,9 @@ const employee: Employee = {
 employee.getDetails();
 
 const manager: Manager = {
-  name: 'Bob',
+  name: "Bob",
   age: 40,
-  dogName: 'rex',
+  dogName: "rex",
   getDetails() {
     return `Name: ${this.name}, Age: ${this.age}`;
   },
@@ -450,7 +450,7 @@ const manager: Manager = {
     return `Name: ${this.dogName}`;
   },
   managePeople() {
-    console.log('manage people');
+    console.log("manage people");
   },
 };
 
@@ -478,28 +478,28 @@ function getEmployee(): Person2 | DogOwner2 | Manager2 {
 
   if (random < 0.33) {
     return {
-      name: 'john',
+      name: "john",
     };
   } else if (random < 0.66) {
     return {
-      name: 'sarah',
-      dogName: 'Rex',
+      name: "sarah",
+      dogName: "Rex",
     };
   } else {
     return {
-      name: 'bob',
-      managePeople: () => console.log('Managing people...'),
-      delegateTasks: () => console.log('Delegating tasks...'),
+      name: "bob",
+      managePeople: () => console.log("Managing people..."),
+      delegateTasks: () => console.log("Delegating tasks..."),
     };
   }
 }
 
 function isManager(obj: Person2 | DogOwner2 | Manager2): obj is Manager2 {
-  return typeof obj === 'object';
+  return typeof obj === "object";
 }
 // ***** LESSON 45 TUPLE *****
 
-let personTuple: [string, number] = ['john', 25];
+let personTuple: [string, number] = ["john", 25];
 
 // ***** LESSON 46 ENUM FUNDAMENTALS *****
 
@@ -516,7 +516,7 @@ interface ServerResponse {
 const getServerResponse = (): ServerResponse => {
   return {
     result: ServerResponseStatus.ERROR,
-    data: ['hello9'],
+    data: ["hello9"],
   };
 };
 
@@ -524,7 +524,7 @@ const response: ServerResponse = getServerResponse();
 
 // ***** LESSON 49 TYPE ASSERTION *****
 
-let someValue: any = 'hello';
+let someValue: any = "hello";
 
 let strLength: number = (someValue as string).length;
 
@@ -541,9 +541,111 @@ let dogObject = JSON.parse(birdString);
 let bird = birdObject as Bird;
 
 enum Status {
-  Pending = 'pending',
-  Declined = 'declined',
+  Pending = "pending",
+  Declined = "declined",
 }
 
-// ***** LESSON 40 FUNCTIONS *****
-// ***** LESSON 40 FUNCTIONS *****
+// ***** LESSON 50 TYPE - UNKNOWN *****
+
+let unkownValue: unknown;
+
+unkownValue = "hello world";
+unkownValue = [1, 2, 3];
+unkownValue = 3;
+
+if (typeof unkownValue === "number") {
+  unkownValue.toFixed(2);
+}
+
+const runSomeCode = () => {
+  const random = Math.random();
+  if (random < 0.5) {
+    throw new Error("there was a error");
+  } else {
+    throw "some error";
+  }
+};
+
+try {
+  runSomeCode();
+} catch (error) {
+  if (error instanceof Error) {
+    console.log(error.message);
+  } else {
+    console.log(error);
+  }
+}
+
+// ***** LESSON 51 TYPE - NEVER *****
+
+// let someNeverValue: never = 0;
+
+type Theme2 = "light" | "dark";
+
+const checkTheme = (theme: Theme2): void => {
+  if (theme === "light") {
+    console.log("light theme");
+    return;
+  }
+  if (theme === "dark") {
+    console.log("dark theme");
+    return;
+  }
+  theme;
+};
+
+enum Color {
+  red,
+  blue,
+  green,
+}
+
+const getColorName = (color: Color) => {
+  switch (color) {
+    case Color.red:
+      return "red";
+    case Color.blue:
+      return "blue";
+    case Color.green:
+      return "green";
+    default:
+      // at build time
+      let unexpectedColor: never = color;
+    //at run time
+    // throw new Error(color);
+  }
+};
+
+console.log(getColorName(Color.red));
+console.log(getColorName(Color.blue));
+
+// ***** LESSON 52 MODULES - INTRO *****
+
+const name2 = "";
+const susan2 = "susan"; // declared in actions.ts. Everything is in global scope
+
+// ***** LESSON 53 MODULES - ES6 *****
+
+import newStudentA, { sayHello, personEx, type Student } from "./actions";
+sayHello("blah blah");
+console.log(newStudentA);
+console.log(personEx);
+
+const anotherStudent: Student = {
+  name: "bob",
+  age: 30,
+};
+
+// ***** LESSON 54 MODULES - JS FILE *****
+// need to cange ts config to use js file for imports in typescript
+
+// ***** LESSON 56 TYPE GUARDS *****
+// ***** LESSON 56 TYPE GUARDS *****
+// ***** LESSON 56 TYPE GUARDS *****
+// see type_guards.ts
+// ***** LESSON 5FUNCTIONS *****
+// ***** LESSON 50 FUNCTIONS *****
+// ***** LESSON 50 FUNCTIONS *****
+// ***** LESSON 50 FUNCTIONS *****
+// ***** LESSON 50 FUNCTIONS *****
+// ***** LESSON 50 FUNCTIONS *****
