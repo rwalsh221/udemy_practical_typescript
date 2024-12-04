@@ -639,11 +639,12 @@ const anotherStudent: Student = {
 // ***** LESSON 54 MODULES - JS FILE *****
 // need to cange ts config to use js file for imports in typescript
 
-// ***** LESSON 56 TYPE GUARDS *****
-// ***** LESSON 56 TYPE GUARDS *****
-// ***** LESSON 56 TYPE GUARDS *****
+// ***** LESSON 56 - 61 TYPE GUARDS *****
 // see type_guards.ts
-// ***** LESSON 5FUNCTIONS *****
+
+// ***** LESSON 62 - 69 GENERICS *****
+// generics.ts
+
 // ***** LESSON 50 FUNCTIONS *****
 // ***** LESSON 50 FUNCTIONS *****
 // ***** LESSON 50 FUNCTIONS *****

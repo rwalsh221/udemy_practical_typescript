@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.ts";
 import "./tutorial.ts";
 import "./type_guards.ts";
+import "./generics.ts";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
