@@ -645,8 +645,51 @@ const anotherStudent: Student = {
 // ***** LESSON 62 - 69 GENERICS *****
 // generics.ts
 
-// ***** LESSON 50 FUNCTIONS *****
-// ***** LESSON 50 FUNCTIONS *****
-// ***** LESSON 50 FUNCTIONS *****
+// ***** LESSON 70 FETCH DATA - BASICS *****
+
+import { z } from "zod";
+
+const tourSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),
+  image: z.string(),
+  price: z.string(),
+});
+
+type Tour = z.infer<typeof tourSchema>;
+
+const url = "https://www.course-api.com/react-tours-project";
+
+const fetchData = async (url: string): Promise<Tour[]> => {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ERROR : ${response.status}`);
+    }
+
+    const rawData: Tour[] = await response.json();
+
+    const result = tourSchema.array().safeParse(rawData);
+
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`);
+    }
+
+    console.log(result.data);
+    return result.data;
+  } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : "there was error";
+    console.log(errorMsg);
+    return [];
+  }
+};
+
+const tours = await fetchData(url);
+tours.map((tour) => console.log(tour.name));
+
+// ***** LESSON 70 FETCH DATA - FUNCTIONS *****
+// ***** LESSON 70 FETCH DATA - FUNCTIONS *****
 // ***** LESSON 50 FUNCTIONS *****
 // ***** LESSON 50 FUNCTIONS *****
