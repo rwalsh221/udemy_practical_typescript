@@ -1,5 +1,4 @@
-import { Button } from "./components/ui/button";
-import { useAppSelector } from "./hooks";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   HomeLayout,
   Landing,
@@ -11,26 +10,47 @@ import {
   Login,
   Checkout,
   Orders,
+  About,
 } from "./pages";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      { path: "products/:id", element: <SingleProduct /> },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      { path: "about", element: <About /> },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      { path: "orders", element: <Orders /> },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
+
 const App = () => {
-  const { name } = useAppSelector((state) => state.userState);
-  console.log(name);
-  return (
-    <div>
-      <h1 className="text-7xl font-bold">APP</h1>
-      <Button
-        variant="destructive"
-        size="lg"
-        onClick={() => {
-          console.log("hellow button");
-        }}
-      >
-        Click Me
-      </Button>
-      <Cart></Cart>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
