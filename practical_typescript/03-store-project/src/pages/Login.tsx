@@ -9,15 +9,57 @@ import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SubmitBtn, FormInput } from "@/components";
 import { customFetch } from "@/utils";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/hooks/use-toast";
 import { type ReduxStore } from "@/store";
 import { loginUser } from "@/features/user/userSlice";
 import { useAppDispatch } from "@/hooks";
 import { AxiosResponse } from "axios";
 
+// function returns function using arrow return ()=>()=>{} test codepen
+export const action =
+  (store: ReduxStore): ActionFunction =>
+  async ({ request }): Promise<Response | null> => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response: AxiosResponse = await customFetch.post(
+        "auth/local",
+        data
+      );
+      console.log(response);
+      const username = response.data.user.username;
+      console.log(username);
+      const jwt = response.data.jwt;
+      store.dispatch(loginUser({ username, jwt }));
+      return redirect("/");
+    } catch (error) {
+      console.log(error);
+      toast({ description: "login failed" });
+      return null;
+    }
+  };
+
 const Login = () => {
-  const loginAsGuestUser = () => {
-    console.log("guest user");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const loginAsGuestUser = async (): Promise<void> => {
+    try {
+      const response: AxiosResponse = await customFetch.post("/auth/local", {
+        identifier: "test@test.com",
+        password: "secret",
+      });
+
+      const username = response.data.user.username;
+      const jwt = response.data.jwt;
+
+      dispatch(loginUser({ username, jwt }));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast({ description: "login failed" });
+    }
   };
 
   return (
