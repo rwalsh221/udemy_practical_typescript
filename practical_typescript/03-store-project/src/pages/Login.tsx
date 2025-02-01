@@ -27,9 +27,9 @@ export const action =
         "auth/local",
         data
       );
-      console.log(response);
+
       const username = response.data.user.username;
-      console.log(username);
+
       const jwt = response.data.jwt;
       store.dispatch(loginUser({ username, jwt }));
       return redirect("/");

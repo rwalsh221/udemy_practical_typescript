@@ -5,7 +5,7 @@ import { CartItemsList, SectionTitle, CartTotals } from "@/components";
 
 const Cart = () => {
   //temp
-  const user = null;
+  const user = useAppSelector((state) => state.userState.user);
   const numItemsInCart = useAppSelector(
     (state) => state.cartState.numItemsInCart
   );
@@ -21,15 +21,14 @@ const Cart = () => {
         </div>
         <div className="lg:col-span-4 lg:pl-4">
           <CartTotals />
-          {user ? (
-            <Button asChild className="mt-8 w-full capitalize">
+
+          <Button asChild className="mt-8 w-full capitalize">
+            {user ? (
               <Link to="/checkout">Proceed to checkout</Link>
-            </Button>
-          ) : (
-            <Button asChild className="mt-8 w-full capitalize">
+            ) : (
               <Link to="/login">please login</Link>
-            </Button>
-          )}
+            )}
+          </Button>
         </div>
       </div>
     </div>
