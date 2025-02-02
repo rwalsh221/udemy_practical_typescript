@@ -1,5 +1,5 @@
 import { Hero, FeaturedProducts } from "@/components";
-import { useLoaderData, LoaderFunction } from "react-router-dom";
+import { LoaderFunction } from "react-router-dom";
 import { customFetch, type ProductsResponse } from "@/utils";
 
 const url = "/products?featured=true";

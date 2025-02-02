@@ -1,5 +1,114 @@
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
+import {
+  constructUrl,
+  constructPrevOrNextUrl,
+  type OrdersResponse,
+} from "@/utils";
+import React from "react";
+
+import { useLoaderData, useLocation } from "react-router-dom";
+
 const ComplexPaginationContainer = () => {
-  return <div></div>;
+  const { meta } = useLoaderData() as OrdersResponse;
+  const { pageCount, page } = meta.pagination;
+
+  const { search, pathname } = useLocation();
+
+  if (pageCount < 2) {
+    return null;
+  }
+
+  // const renderPagination = pages.map((pageNumber) => {
+  //   const isActive = pageNumber === page;
+  //   const url = constructUrl({ pageNumber, search, pathname });
+
+  //   return (
+  //     <PaginationItem key={pageNumber}>
+  //       <PaginationLink to={url} isActive={isActive}>
+  //         {pageNumber}
+  //       </PaginationLink>
+  //     </PaginationItem>
+  //   );
+  // });
+
+  const constructButton = ({
+    pageNumber,
+    isActive,
+  }: {
+    pageNumber: number;
+    isActive: boolean;
+  }): React.ReactNode => {
+    const url = constructUrl({ pageNumber, search, pathname });
+    return (
+      <PaginationItem key={pageNumber}>
+        <PaginationLink to={url} isActive={isActive}>
+          {pageNumber}
+        </PaginationLink>
+      </PaginationItem>
+    );
+  };
+
+  const constructEllipses = (key: string): React.ReactNode => {
+    return (
+      <PaginationItem>
+        <PaginationEllipsis key={key} />
+      </PaginationItem>
+    );
+  };
+
+  const renderPagination = () => {
+    const pages: React.ReactNode[] = [];
+    // first page
+    pages.push(constructButton({ pageNumber: 1, isActive: page === 1 }));
+
+    if (page > 2) {
+      pages.push(constructEllipses("dot-1"));
+    }
+
+    // active page
+    if (page !== 1 && page !== pageCount) {
+      pages.push(constructButton({ pageNumber: page, isActive: page === 1 }));
+    }
+
+    if (page < pageCount - 1) {
+      pages.push(constructEllipses("dot-2"));
+    }
+
+    // last page
+    pages.push(
+      constructButton({ pageNumber: pageCount, isActive: page === pageCount })
+    );
+    return pages;
+  };
+
+  const { prevUrl, nextUrl } = constructPrevOrNextUrl({
+    currentPage: page,
+    pageCount,
+    search,
+    pathname,
+  });
+
+  return (
+    <Pagination className="mt-16">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious to={prevUrl} />
+        </PaginationItem>
+        {renderPagination()}
+        <PaginationItem>
+          <PaginationNext to={nextUrl} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
 };
 
 export default ComplexPaginationContainer;

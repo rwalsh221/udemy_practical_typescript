@@ -3,7 +3,7 @@ import { Skeleton } from "./ui/skeleton";
 const Loading = () => {
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 3 }).map((el, index) => {
+      {Array.from({ length: 3 }).map((_, index) => {
         return (
           <div key={index} className="flex flex-col space-y-3">
             <Skeleton className="h-[125px] w-full rounded-xl" />

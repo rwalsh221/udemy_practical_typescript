@@ -28,7 +28,7 @@ export const SecondColumn = ({
 }: {
   title: string;
   company: string;
-  producstColor: string;
+  productColor: string;
 }) => {
   return (
     <div className="sm:ml-4 md:ml-12 sm:w-48">
